@@ -1,0 +1,35 @@
+div class="modal fade" id="signUpModal" tabinex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header.d-block
+        h5 
+          .modal-title ユーザー登録
+      .modal-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          .field class="form-group"
+            = f.label :username
+            br
+            = f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control"
+          .field
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+          .field
+            = f.label :password
+            - if @minimum_password_length
+              em
+                | (
+                = @minimum_password_length
+                |  characters minimum)
+            br
+            = f.password_field :password, autocomplete: "new-password",class: "form-control"
+          .field
+            = f.label :password_confirmation
+            br
+            = f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control"
+          = f.hidden_field :url, value: request.fullpath 
+
+          .actions
+            = f.submit "Sign up"
+        = render "devise/shared/links", class:"btn btn-primary form-control"

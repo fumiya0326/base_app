@@ -1,0 +1,42 @@
+h1 =@sule.name
+div class="row"
+  div class="col-xs-8"
+    ul class="list-group" style="max-width: 800px"
+      - if @sule.commes.any?
+        - @commes.each_with_index do|comme , x|
+          li class="list-group-item"
+            div class="commename"
+              =x+1
+              span style="margin-right: 16px;"
+              =link_to users_show_path_url(comme.user)
+                =comme.user.username
+            p
+            div class="comment"
+              =comme.comment
+            p
+            p class="text-right"
+              =comme.created_at.to_s(:datetime_jp)
+  div class="col-xs-4"
+   
+   
+   .modal fade #sule-modal tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"
+  
+   button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#createComme" コメントする
+   
+   div class="modal fade" id="createComme" tabinex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"
+      div class="modal-dialog"
+        div class="modal-content"
+          div class="modal-header"
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+            h4 class="modal-title" id="dialogHeader" Comment
+            
+          =form_for(@newcomme,  url: comme_create_path_url, remote: true) do |f|
+            .modal-body
+              =f.text_area :comment, class: "form-control"
+              
+            .modal-footer
+              button type="button" class="btn btn-defauld" data-dismiss="modal" キャンセル
+              =f.button '送信', class: "btn btn-primary", data:{disable_with: "送信中..."}
+              =f.hidden_field :sule_id
+              =f.hidden_field :user_id
+ 
