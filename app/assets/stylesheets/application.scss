@@ -48,6 +48,7 @@ textarea{
 /* show */ 
 .list-group{
     .list-group-item{
+        
         .commename{
             color: #777;
         }
@@ -58,5 +59,13 @@ textarea{
         .text-right{
             color: #555;
         }
+        
     }
+    .reply{
+            margin-left: 20px;
+            .reply-content{
+                margin: 30px;
+                font-size: 1.8em;
+            }
+        }
 }

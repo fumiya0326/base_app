@@ -11,8 +11,8 @@
         br
         |フォロワー数:
         =@user.followers.count
-        
-        =render 'follow_form'  if user_signed_in?
-    .col-xs-6
-        |閲覧履歴
+    
+        =render 'follow_form'  unless current_user.id==@user.id
+    
+    
         

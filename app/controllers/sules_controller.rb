@@ -14,10 +14,12 @@ class SulesController < ApplicationController
     @sule=Sule.find(params[:id])
     @commes=Comme.where(sule_id: params[:id])
     @newcomme=Comme.new(:sule_id => params[:id])
+    @newreply=Reply.new(:sule_id =>params[:id])
+    
   end
   
   def create
-    @sule=Sule.new(params[:sule].permit(:name, :teamatr))
+    @sule=Sule.new(params[:sule].permit(:name, :teamatr, :content))
     if @sule.save
       redirect_to sule_show_path_url(id: @sule.id), notice: '成功しました'
     else

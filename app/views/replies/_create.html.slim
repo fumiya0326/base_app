@@ -1,0 +1,21 @@
+div class="modal fade" id="replymodal#{comme.id}" tabinex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"
+    .modal-dialog role="document"
+      .modal-content
+        .modal-header
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
+            h4 
+              .modal-title
+                |Comment
+            
+        
+        = form_for(@newreply, url: replies_path, remote: true) do |f|
+          .modal-body
+              =f.label :reply
+              br
+              =f.text_area :reply
+          .modal-fotter
+              button type="button" class="btn btn-defauld" data-dismiss="modal" キャンセル
+              =f.button '送信', class: "btn btn-primary"
+              =f.hidden_field :user_id
+              =f.hidden_field :sule_id
+              =f.hidden_field :comme_id

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200209152057) do
+ActiveRecord::Schema.define(version: 20200212061623) do
 
   create_table "commes", force: :cascade do |t|
     t.string "comment"
@@ -31,11 +31,24 @@ ActiveRecord::Schema.define(version: 20200209152057) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.text "reply"
+    t.integer "user_id"
+    t.integer "comme_id"
+    t.integer "sule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comme_id"], name: "index_replies_on_comme_id"
+    t.index ["sule_id"], name: "index_replies_on_sule_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
   create_table "sules", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "teamatr"
+    t.text "content"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,5 +5,5 @@ class Sule < ApplicationRecord
               :less_than_or_equal_to =>13
     },        presence: true
     has_many :commes
-
+    has_many :replies
 end

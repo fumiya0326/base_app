@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :username, presence: true, length:{maximum: 30}, uniqueness: true
                         
   has_many :commes
+  has_many :replies
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy

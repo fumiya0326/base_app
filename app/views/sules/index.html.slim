@@ -1,5 +1,9 @@
 <h1>トピック一覧</h1>
-ul
-  - @sules.each do |sule|
-      li= link_to sule.name, sules_show_path(id: sule.id) 
-=render 'newsule'
+.row
+  .col-xs-8
+    ul class="list-group" style="max-width: 400px;"
+      - @sules.each do |sule|
+          = link_to sule.name, sules_show_path(id: sule.id), class: "list-group-item"
+  
+  .col-xs-4
+    =render 'newsule'

@@ -1,4 +1,11 @@
 =form_for @newsule, url:sule_create_path_url do|f|
+    =f.label :name
+    br
     =f.text_field :name
+    br
+    =f.label :content
+    br
+    =f.text_area :content
+    br
     =f.hidden_field :teamatr
     =f.submit

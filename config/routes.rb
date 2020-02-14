@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   
   resources :relationships, only: [:create, :destroy]
-  
+  resources :replies, only: [:create]
   
   root to: 'sules#teamindex'
   get 'sules/index/:teamatr', to: 'sules#index', as: :sule_index_path
