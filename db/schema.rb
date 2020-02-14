@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200212061623) do
+ActiveRecord::Schema.define(version: 20200214065915) do
+
+  create_table "browging_histories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "browsing_histories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "sule_id"
+  end
 
   create_table "commes", force: :cascade do |t|
     t.string "comment"

@@ -6,4 +6,5 @@ class Sule < ApplicationRecord
     },        presence: true
     has_many :commes
     has_many :replies
+    has_many :browsing_histories
 end

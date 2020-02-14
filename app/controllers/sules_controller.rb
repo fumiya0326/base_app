@@ -2,6 +2,7 @@ class SulesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def teamindex
+      @browsingH=current_user.browsing_histories.all
   end
   
   
@@ -12,6 +13,21 @@ class SulesController < ApplicationController
   
   def show
     @sule=Sule.find(params[:id])
+    new_bh=@sule.browsing_histories.new
+    new_bh.user_id=current_user.id
+    
+    if current_user.browsing_histories.exists?(sule_id: "#{params[:id]}")
+      old_bh=current_user.browsing_histories.find_by(sule_id: "#{params[:id]}")
+      old_bh.destroy
+    end
+    new_bh.save
+    
+    bh_limit=6
+    history=current_user.browsing_histories.all
+    if history.count > bh_limit
+      history[0].destroy
+    end
+    
     @commes=Comme.where(sule_id: params[:id])
     @newcomme=Comme.new(:sule_id => params[:id])
     @newreply=Reply.new(:sule_id =>params[:id])

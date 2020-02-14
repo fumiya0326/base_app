@@ -1,8 +1,21 @@
-ul
-    li =link_to "G", sule_index_path_url(teamatr: 1)
-    li =link_to "De", sule_index_path_url(teamatr: 2) 
-    li =link_to "T", sule_index_path_url(teamatr: 3)
-    li =link_to "H", sule_index_path_url(teamatr: 4) 
-    li =link_to "CD", sule_index_path_url(teamatr: 5)
-    li =link_to "Y", sule_index_path_url(teamatr: 6)
+.row
+    .col-xs-6
+        h2 最近見た記事
+        .list-group style="max-width: 400px"
+        -@browsingH.each do |b|
+              =link_to  sule_show_path_url(b.sule), class: "list-group-item "
+                  =b.sule.name
+                  br
+                  =b.sule.content
+                  br
+                  =b.created_at.to_s(:datetime_jp)
+                  br
+    .col-xs-4
+        ul
+            li =link_to "G", sule_index_path_url(teamatr: 1)
+            li =link_to "De", sule_index_path_url(teamatr: 2) 
+            li =link_to "T", sule_index_path_url(teamatr: 3)
+            li =link_to "H", sule_index_path_url(teamatr: 4) 
+            li =link_to "CD", sule_index_path_url(teamatr: 5)
+            li =link_to "Y", sule_index_path_url(teamatr: 6)
     
