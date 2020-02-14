@@ -32,7 +32,7 @@ end
     comment= "hello"
     Comme.create!(comment: comment, 
                   sule_id: 1,
-                  user_id:1)
+                  user_id: 2)
 end
 
 Comme.create!(comment: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",

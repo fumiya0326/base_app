@@ -4,10 +4,19 @@ class RepliesController < ApplicationController
     def create
         @reply=Reply.new(reply_params)
         @reply.user_id=current_user.id
-        if @reply.save
-            redirect_to sules_show_path(id: @reply.sule_id), notice: "コメントしました"
-        else
-            redirect_to sules_show_path(id: @reply.sule_id), notice: "コメントに失敗しました"
+            if @reply.save
+                redirect_to sules_show_path(id: @reply.sule_id), notice: "コメントに返信しました"
+                new_ch=@reply.comment_histories.new
+                new_ch.user_id=current_user.id
+                new_ch.save
+            else
+                redirect_to sules_show_path(id: @reply.sule_id), notice: "コメントに失敗しました"
+            end
+        
+        comment_histories_limit=10
+        history=current_user.comment_histories.all
+        if history.count > comment_histories_limit
+            history[0].destroy
         end
     end
     

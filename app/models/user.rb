@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :commes
   has_many :replies
   has_many :browsing_histories
+  has_many :comment_histories
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -27,5 +28,9 @@ class User < ApplicationRecord
   
   def following?(other_user)
     following.include?(other_user)
+  end
+  
+  def feed
+    Comme.where("user_id IN (?) ", following_ids)
   end
 end

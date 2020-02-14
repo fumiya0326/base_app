@@ -1,5 +1,6 @@
 .row
-    .col-xs-6
+    -if user_signed_in?
+      .col-xs-6
         h2 最近見た記事
         .list-group style="max-width: 400px"
         -@browsingH.each do |b|
@@ -10,7 +11,7 @@
                   br
                   =b.created_at.to_s(:datetime_jp)
                   br
-    .col-xs-4
+      .col-xs-4
         ul
             li =link_to "G", sule_index_path_url(teamatr: 1)
             li =link_to "De", sule_index_path_url(teamatr: 2) 
@@ -18,4 +19,19 @@
             li =link_to "H", sule_index_path_url(teamatr: 4) 
             li =link_to "CD", sule_index_path_url(teamatr: 5)
             li =link_to "Y", sule_index_path_url(teamatr: 6)
-    
+        
+        -@followings.each do|following|
+          =following.comment
+          =following.user.username
+          
+        
+        
+    -else
+        .col-xs-6
+          ul
+            li =link_to "G", sule_index_path_url(teamatr: 1)
+            li =link_to "De", sule_index_path_url(teamatr: 2) 
+            li =link_to "T", sule_index_path_url(teamatr: 3)
+            li =link_to "H", sule_index_path_url(teamatr: 4) 
+            li =link_to "CD", sule_index_path_url(teamatr: 5)
+            li =link_to "Y", sule_index_path_url(teamatr: 6)    

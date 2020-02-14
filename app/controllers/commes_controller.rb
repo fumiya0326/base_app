@@ -13,11 +13,21 @@ class CommesController < ApplicationController
         @comme=Comme.new(comme_params)
         @comme.user_id= current_user.id
             if @comme.save
-                redirect_to sules_show_path(id: @comme.sule_id), notice: "コメントしました"
+                
+                new_ch=@comme.comment_histories.new
+                new_ch.user_id=current_user.id
+                if new_ch.save
+                    redirect_to sules_show_path(id: @comme.sule_id), notice: "コメントしました"
+                end
+                
             else
                 redirect_to sules_show_path(id: @comme.sule_id), notice: "コメントに失敗しました"
             end
-         
+        comment_histories_limit=10
+        history=current_user.comment_histories.all
+        if history.count > comment_histories_limit
+            history[0].destroy
+        end
     end
     
     private

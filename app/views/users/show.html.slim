@@ -14,5 +14,22 @@
     
         =render 'follow_form'  unless current_user.id==@user.id
     
-    
-        
+    .col-xs-6
+        h2 最近したコメント
+        .list-group style="max-width:400px"
+        -@comment_history.each do|c|
+            -if c.reply_id.nil?
+                =link_to sule_show_path_url(c.comme.sule), class: "list-group-item"
+                    =c.comme.comment
+                    br
+                    =c.comme.sule.name
+                    br        
+                    =c.created_at.to_s(:datetime_jp)
+                    br
+            -else
+                =link_to sule_show_path_url(c.reply.comme.sule), class: "list-group-item"
+                    =c.reply.reply
+                    br
+                    =c.reply.comme.sule.name
+                    br
+                    =c.created_at.to_s(:datetime_jp)

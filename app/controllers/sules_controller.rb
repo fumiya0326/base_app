@@ -2,7 +2,10 @@ class SulesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def teamindex
+    if user_signed_in?
       @browsingH=current_user.browsing_histories.all
+      @followings=current_user.feed
+    end
   end
   
   
