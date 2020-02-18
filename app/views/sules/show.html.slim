@@ -64,7 +64,7 @@ div class="row"
                       |reply
                 
                 
-                
+        = paginate @commes   
                 
                 
                 
@@ -81,10 +81,12 @@ div class="row"
           div class="modal-content"
             div class="modal-header"
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
-              h4 class="modal-title" id="dialogHeader" Comment
+              h4 class="modal-title" id="dialogHeader" 
+                |こめんと
             
             =form_for(@newcomme,  url: comme_create_path_url, remote: true) do |f|
               .modal-body
+                =f.label :comment, "コメント" 
                 =f.text_area :comment, class: "form-control"
               
               .modal-footer

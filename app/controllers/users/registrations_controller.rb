@@ -28,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      redirect_to params[:user][:url], notice:"登録に失敗しました"
+      redirect_to params[:user][:url], notice: resource.errors.full_messages
     end
   end
   

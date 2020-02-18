@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :username, presence: true, length:{maximum: 30}, uniqueness: true
+  validates :username, presence: true, length:{maximum: 20}, uniqueness: true
                         
   has_many :commes
   has_many :replies
@@ -31,6 +31,6 @@ class User < ApplicationRecord
   end
   
   def feed
-    Comme.where("user_id IN (?) ", following_ids)
+    CommentHistory.where("user_id IN (?) ", following_ids)
   end
 end

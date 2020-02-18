@@ -4,7 +4,7 @@ class SulesController < ApplicationController
   def teamindex
     if user_signed_in?
       @browsingH=current_user.browsing_histories.all
-      @followings=current_user.feed
+      @followings=current_user.feed.page(params[:page])
     end
   end
   
@@ -16,29 +16,31 @@ class SulesController < ApplicationController
   
   def show
     @sule=Sule.find(params[:id])
-    new_bh=@sule.browsing_histories.new
-    new_bh.user_id=current_user.id
+    if current_user
+      new_bh=@sule.browsing_histories.new
+      new_bh.user_id=current_user.id
     
-    if current_user.browsing_histories.exists?(sule_id: "#{params[:id]}")
-      old_bh=current_user.browsing_histories.find_by(sule_id: "#{params[:id]}")
-      old_bh.destroy
+      if current_user.browsing_histories.exists?(sule_id: "#{params[:id]}")
+        old_bh=current_user.browsing_histories.find_by(sule_id: "#{params[:id]}")
+        old_bh.destroy
+      end
+      new_bh.save
+    
+      bh_limit=6
+      history=current_user.browsing_histories.all
+      if history.count > bh_limit
+        history[0].destroy
+      end
     end
-    new_bh.save
     
-    bh_limit=6
-    history=current_user.browsing_histories.all
-    if history.count > bh_limit
-      history[0].destroy
-    end
-    
-    @commes=Comme.where(sule_id: params[:id])
+    @commes=Comme.where(sule_id: params[:id]).page(params[:page]).per(20)
     @newcomme=Comme.new(:sule_id => params[:id])
     @newreply=Reply.new(:sule_id =>params[:id])
-    
+  
   end
   
   def create
-    @sule=Sule.new(params[:sule].permit(:name, :teamatr, :content))
+    @sule=Sule.new(sule_params)
     if @sule.save
       redirect_to sule_show_path_url(id: @sule.id), notice: '成功しました'
     else
@@ -55,8 +57,9 @@ class SulesController < ApplicationController
   end
   
   private
+    def sule_params
+       params.require(:sule).permit(:name,:teamatr, :content)
+    end      
   
-    def ikioi
-      (Time.now.to_i)-(@sule.created_at.to_i)/@sule.commes.count
-    end
+
 end

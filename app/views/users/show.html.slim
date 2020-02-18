@@ -6,10 +6,11 @@
         |総コメント数:  
         =@user.commes.count
         br
-        =link_to "フォロー数:",  following_user_url%(@user), :style=>"color:black"
+        =link_to "フォロー数:",  following_user_url(@user), :style=>"color:black"
         =@user.following.count
         br
-        |フォロワー数:
+        =link_to "フォロワー数", followers_user_url(@user), :style=>"color:black"
+        
         =@user.followers.count
     
         =render 'follow_form'  unless current_user.id==@user.id

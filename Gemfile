@@ -5,9 +5,8 @@ gem 'bcrypt',                  '3.1.12'
 gem 'faker',                   '1.7.3'
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
-gem 'will_paginate',           '3.1.6'
-gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass',          '3.3.7'
+gem 'kaminari'
 gem 'coffee-script'
 gem 'puma',                    '3.9.1'
 gem 'sass-rails',              '5.0.6'
@@ -23,12 +22,16 @@ gem 'binding_of_caller', group:[:development,:test]
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'slim'
 gem 'html2slim'
 gem 'rename'
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -44,6 +47,7 @@ group :test do
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.14.1'
   gem 'guard-minitest',           '2.4.6'
+  gem 'capybara', '~> 2.15.2'
 end
 
 group :production do

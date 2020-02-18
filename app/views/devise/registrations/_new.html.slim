@@ -8,15 +8,15 @@ div class="modal fade" id="signUpModal" tabinex="-1" role="dialog" aria-labelled
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = render "devise/shared/error_messages", resource: resource
           .field class="form-group"
-            = f.label :username
+            = f.label :username, "ニックネーム"
             br
             = f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control"
           .field
-            = f.label :email
+            = f.label :email,"登録用のe-mail"
             br
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
           .field
-            = f.label :password
+            = f.label :password, "パスワード(6文字以上)"
             - if @minimum_password_length
               em
                 | (
@@ -25,7 +25,7 @@ div class="modal fade" id="signUpModal" tabinex="-1" role="dialog" aria-labelled
             br
             = f.password_field :password, autocomplete: "new-password",class: "form-control"
           .field
-            = f.label :password_confirmation
+            = f.label :password_confirmation, "パスワード(確認用)"
             br
             = f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control"
           = f.hidden_field :url, value: request.fullpath 

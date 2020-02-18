@@ -1,11 +1,11 @@
 =form_for @newsule, url:sule_create_path_url do|f|
-    =f.label :name
+    =f.label :name, "スレッド名"
     br
     =f.text_field :name
     br
-    =f.label :content
+    =f.label :content, "スレッドの内容"
     br
     =f.text_area :content
     br
     =f.hidden_field :teamatr
-    =f.submit
+    =f.button 

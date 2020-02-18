@@ -20,9 +20,16 @@
             li =link_to "CD", sule_index_path_url(teamatr: 5)
             li =link_to "Y", sule_index_path_url(teamatr: 6)
         
-        -@followings.each do|following|
-          =following.comment
-          =following.user.username
+        .list-group style="max-width: 300px"
+          -@followings.each do|f|
+            .list-group-item 
+              -if f.reply_id.nil?
+                =f.comme.comment
+              -else
+                =f.reply.reply
+              .text-right
+                  =f.user.username
+          = paginate @followings
           
         
         

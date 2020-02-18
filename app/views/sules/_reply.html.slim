@@ -1,0 +1,13 @@
+.reply
+    =link_to users_show_path_url(reply.user)
+        =reply.user.username
+    p   
+    .reply-content
+        =reply.reply
+    p
+    p class="text-right"
+        =reply.created_at.to_s(:datetime_jp)
+    -if user_signed_in?
+        button type="button"  class="btn" data-toggle="modal" data-target="#replymodal#{comme.id}" 
+            |reply
+                
