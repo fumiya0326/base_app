@@ -17,6 +17,7 @@ html
           = link_to 'baseball', root_path, class: 'navbar-brand', id: "logo"
         nav
           ul class="nav navbar-nav navbar-right"
+            li =link_to "全スレッド一覧", sule_itiran_url
             - if user_signed_in?
               li = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item nav-link active"
               li = link_to "マイページ", users_show_path_url(current_user)
@@ -27,6 +28,9 @@ html
               li 
                 a class="nav-link" type="button" data-toggle="modal" data-target="#loginmodal"
                   |ログイン
+            li =link_to "戻る", :back
+    
+          
     p.notice
       = notice
     p.alert

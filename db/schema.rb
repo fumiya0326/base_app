@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200214095314) do
+ActiveRecord::Schema.define(version: 20200228140104) do
 
   create_table "browsing_histories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20200214095314) do
     t.datetime "updated_at", null: false
     t.integer "sule_id"
     t.integer "user_id"
+    t.string "image"
     t.index ["sule_id"], name: "index_commes_on_sule_id"
   end
 
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20200214095314) do
     t.integer "sule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["comme_id"], name: "index_replies_on_comme_id"
     t.index ["sule_id"], name: "index_replies_on_sule_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
@@ -62,8 +64,10 @@ ActiveRecord::Schema.define(version: 20200214095314) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "teamatr"
+    t.string "teamatr"
     t.text "content"
+    t.string "image"
+    t.float "ikioi"
   end
 
   create_table "users", force: :cascade do |t|

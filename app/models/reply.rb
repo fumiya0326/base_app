@@ -7,4 +7,5 @@ class Reply < ApplicationRecord
   validates :user_id, presence: true
   validates :sule_id, presence: true
   validates :comme_id, presence: true
+  mount_uploader :image, ImageUploader
 end

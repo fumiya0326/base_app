@@ -4,4 +4,13 @@ class Comme < ApplicationRecord
     has_many :replies , dependent: :destroy
     has_many :comment_histories
     validates :comment, presence: true, length:{maximum:200}
+    mount_uploader :image, ImageUploader
+    validate :image_size
+    
+    private
+    def image_size
+      if image.size > 5.megabytes
+        errors.add(:picture, "5MB以下にしてください")
+      end
+    end
 end

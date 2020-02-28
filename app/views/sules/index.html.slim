@@ -1,9 +1,16 @@
-<h1>トピック一覧</h1>
+nav aria-label="パンくずリスト"
+  ol class="breadcrumb"
+    li class="breadcrumb-item"
+      =link_to root_path
+       |ホーム
+      
+    li class="breadcrumb-item active" aria-current="page"
+      = "#{params[:teamatr]}のスレッド一覧"
+h1トピック一覧
 .row
   .col-xs-8
-    ul class="list-group" style="max-width: 400px;"
-      - @sules.each do |sule|
-          = link_to sule.name, sules_show_path(id: sule.id), class: "list-group-item"
-  
+    ul class="list-group" style="max-width: 500px;"
+      =render @sules
+      = paginate @sules
   .col-xs-4
     =render 'newsule'

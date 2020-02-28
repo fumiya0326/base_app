@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "Sules", type: :feature do
 
     scenario "user create new thread"do
+        pending
         user=create(:user)
         sign_in user
         visit sule_index_path_url(teamatr: 1)

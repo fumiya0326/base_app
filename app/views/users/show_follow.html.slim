@@ -1,8 +1,8 @@
 
 .row
     .col-xs-4
-        
-            =link_to  @user.username, users_show_path_url(@user)
+            h1
+                =link_to  @user.username, users_show_path_url(@user), :style=>"color:black"
             br 
             |コメント数:
             =@user.commes.count
@@ -13,6 +13,8 @@
                     - @users.each do |x|
                         =link_to x.username, users_show_path_url(x)
                         br
+                    = paginate @users
                 -else 
                     =@title
+                    
                 

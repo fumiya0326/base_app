@@ -1,10 +1,26 @@
-
+nav aria-label="パンくずリスト"
+  ol class="breadcrumb"
+    li class="breadcrumb-item"
+      =link_to root_path
+       |ホーム
+    
+    li class="breadcrumb-item active" aria-current="page"
+        -if @user==current_user 
+            |マイページ
+        -else
+            |ユーザーページ
 .row
     .col-xs-4
         h1 =@user.username
 
         |総コメント数:  
         =@user.commes.count
+        br
+        |今日のコメント数:
+        =@today_comment
+        br
+        =@yesterday_comment
+        ="(前日比#{@today_comment-@yesterday_comment})"
         br
         =link_to "フォロー数:",  following_user_url(@user), :style=>"color:black"
         =@user.following.count
@@ -18,7 +34,8 @@
     .col-xs-6
         h2 最近したコメント
         .list-group style="max-width:400px"
-        -@comment_history.each do|c|
+        -if @comment_histories.any?
+         -@comment_histories.each do|c|
             -if c.reply_id.nil?
                 =link_to sule_show_path_url(c.comme.sule), class: "list-group-item"
                     =c.comme.comment

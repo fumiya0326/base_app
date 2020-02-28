@@ -21,23 +21,30 @@ User.create!(username: "example",
 end
              
 10.times do |n|
-    name = "hello #{n+1}"
-    team = n+1
+    name = Faker::Name.name
+    team = ["Tigers","Giants", "BayStars", "Dragons", "Swallows","Carp"].sample
+    content= Faker::Lorem.sentences
     Sule.create!(name: name,
-                 teamatr: team)
+                 teamatr: team,
+                 content: content,
+                 ikioi: 0)
                 
 end
 
-10.times do |n|
-    comment= "hello"
+20.times do |n|
+    comment= Faker::Lorem.sentences
+    sule= rand(10)
+    user= rand(30)
     Comme.create!(comment: comment, 
-                  sule_id: 1,
-                  user_id: 2)
+                  sule_id: sule,
+                  user_id: user
+                 )
 end
 
-Comme.create!(comment: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+Comme.create!(comment: "古田 敦也（ふるた あつや、1965年8月6日 - ）は、兵庫県川西市出身の元プロ野球選手（捕手）・監督で、現在は野球解説者、タレント、スポーツキャスター。日本プロ野球名球会副理事長。芸能プロダクションは株式会社エーポイント所属。マネジメントは株式会社ビッグベンと業務提携。妻は元フジテレビアナウンサーの中井美穂。",
               sule_id: 1,
-              user_id: 1)
+              user_id: 1,
+              )
 
 users=User.all
 user=User.first

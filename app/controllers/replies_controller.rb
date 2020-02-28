@@ -4,7 +4,10 @@ class RepliesController < ApplicationController
     def create
         @reply=Reply.new(reply_params)
         @reply.user_id=current_user.id
+        @reply.sule.ikioi+=1
             if @reply.save
+                #@reply.sule.ikioi+= 1
+                #@reply.sule.save
                 redirect_to sules_show_path(id: @reply.sule_id), notice: "コメントに返信しました"
                 new_ch=@reply.comment_histories.new
                 new_ch.user_id=current_user.id
@@ -22,6 +25,6 @@ class RepliesController < ApplicationController
     
     private
         def reply_params
-            params.require(:reply).permit(:reply, :sule_id, :comme_id, :user_id)
+            params.require(:reply).permit(:reply, :sule_id, :comme_id, :user_id, :image)
         end
 end

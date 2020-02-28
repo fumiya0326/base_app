@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "Commes", type: :feature do
     
     scenario "user create new comment and comment_histories"do 
+        pending
         user=create(:user)
         sule=create(:sule)
         sign_in user
@@ -10,9 +11,10 @@ RSpec.feature "Commes", type: :feature do
         click_on "コメントする"
         sleep 1
         expect(page).to have_content"こめんと"
+        expect(page).to have_content "コメントを送信"
         expect{ 
             fill_in "コメント", with: "new comment",visible: false
-            click_on "送信", visible: false
+            click_button "コメントを送信", visible: false
             
             expect(page).to have_content user.username
             expect(page).to have_content"new comment"

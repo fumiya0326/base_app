@@ -3,5 +3,6 @@ FactoryBot.define do
     sequence(:comment){|n| "TEST_COMMENT#{n}"}
     association :user
     association :sule
+    image{"image"}
   end
 end

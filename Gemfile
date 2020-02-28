@@ -27,6 +27,7 @@ gem 'devise-i18n-views'
 gem 'slim'
 gem 'html2slim'
 gem 'rename'
+gem "rmagick", "~>2.13.2", :require => 'RMagick'
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
