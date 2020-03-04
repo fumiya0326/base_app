@@ -28,6 +28,16 @@ RSpec.describe User, type: :model do
           is_expected.to eq(false)
       end
       
+      it "is valid without teamatr"do 
+        @user.teamatr=""
+        expect(@user).to be_valid
+      end
+      
+      it "is invalid with false teamatr"do 
+        @user.teamatr="abeshinnosuke"
+        expect(@user).to be_valid
+      end
+      
       it "is invalid with a duplicate email" do
         User.create(
           username: "jhon",

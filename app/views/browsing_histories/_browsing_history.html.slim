@@ -1,7 +1,10 @@
 .browsing_history
     =link_to  sule_show_path_url(browsing_history.sule), class: "list-group-item "
-        =browsing_history.sule.name
+        .sule_name
+            =browsing_history.sule.name
         br
-        =browsing_history.sule.content
+        .sule_content
+            =browsing_history.sule.content
         br
-        =browsing_history.created_at.to_s(:datetime_jp)
+        .text-right
+            =browsing_history.created_at.to_s(:datetime_jp)

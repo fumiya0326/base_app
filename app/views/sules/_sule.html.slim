@@ -1,8 +1,14 @@
 
 =link_to sule_show_path_url(sule), class: "list-group-item"
-  =sule.name
+  .sule_name
+    =sule.name
   br
-  =sule.content
+  .sule_content
+    =sule.content
   br
-  
-  =sule.ikioi
+  .text-right
+    
+    |勢い：
+    =sule.ikioi
+    br
+    =sule.created_at.to_s(:datetime_jp)

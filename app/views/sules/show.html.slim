@@ -12,16 +12,19 @@ h1 =@sule.name
 div class="row"
   div class="col-xs-8"
     ul class="list-group" style="max-width: 800px"
-      li class="list-group-item list-group-item-info"
+      li class="list-group-item"
         .commename
-         |topic
+          =link_to "#{@sule.user.username}", users_show_path_url(@sule.user)
         .content
           = @sule.content
+          br
+          -if @sule.image?
+            =image_tag @sule.image.url
         p class="text-right"
               =@sule.created_at.to_s(:datetime_jp)
       - if @sule.commes.any?
         - @commes.each_with_index do|comme , x|
-          li class="list-group-item list-group-item-info"
+          li class="list-group-item"
             div class="commename"
               =x+1
               span style="margin-right: 16px;"
@@ -35,8 +38,10 @@ div class="row"
                 =image_tag comme.image.url
             div class="text-right"
               -if user_signed_in?
-                button type="button"  class="btn" data-toggle="modal" data-target="#replymodal#{comme.id}" 
-                  |reply
+                button type="button"  class="btn btn-success" data-toggle="modal" data-target="#replymodal#{comme.id}" 
+                 |reply
+              -if @sule.user==current_user
+                =link_to "削除", commes_destroy_path(comme), class:"btn btn-danger", method: :delete
             p
             p class="text-right"
               =comme.created_at.to_s(:datetime_jp)
@@ -84,9 +89,9 @@ div class="row"
                   p class="text-right"
                     =reply.created_at.to_s(:datetime_jp)
                   -if user_signed_in?
-                    button type="button"  class="btn" data-toggle="modal" data-target="#replymodal#{comme.id}" 
+                    button type="button"  class="btn btn-success" data-toggle="modal" data-target="#replymodal#{comme.id}" 
                       |reply
-                
+                  
                 
         = paginate @commes   
                 

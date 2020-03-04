@@ -26,10 +26,20 @@ nav aria-label="パンくずリスト"
         =@user.following.count
         br
         =link_to "フォロワー数", followers_user_url(@user), :style=>"color:black"
-        
         =@user.followers.count
-    
-        =render 'follow_form'  unless current_user.id==@user.id
+        br 
+        |asd
+        =@user.fav_team
+        
+        -unless current_user.id==@user.id
+            =render 'follow_form'  
+        -else
+            =form_for @user, url: team_update_url do |f|
+                =f.select :fav_team,[ ["BayStars","BayStars" ],["Carp", "Carp"],["Dragons", "Dragons"],["Giants", "Giants"],["Tigers", "Tigers"],["Swallows","Swallows"]]
+                =f.button
+        br 
+        
+        =line_chart @chart
     
     .col-xs-6
         h2 最近したコメント

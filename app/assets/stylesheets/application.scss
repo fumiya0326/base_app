@@ -19,12 +19,14 @@ $light-gray: #777;
 /* universal */
 
 #logo{
-    color: #000;
+    color: #fff;
     font-size: 2em;
     padding: 20px;
     
 }
 body{
+    color: #888;
+    background-color: #fff;
     padding-top: 6px;
     word-wrap: break-word;
 }
@@ -34,6 +36,15 @@ section{
 
 textarea{
     resize: vertical;
+}
+.navbar{
+    background-color: #a4ede3;
+}
+.breadcrumb{
+    background-color: #a4ede3;
+}
+.jumbotron{
+    background-color: #a4ede3;
 }
 .row{
     
@@ -49,6 +60,8 @@ textarea{
 /* show */ 
 .list-group{
     .list-group-item{
+        
+        border-color: #4eccbb;
         .content{
             margin: 30px;
             font-size: 1.8em;
@@ -59,6 +72,13 @@ textarea{
         .comment{
             margin: 30pxs;
             font-size: 1.8em;
+        }
+        .sule_name{
+            font-size: 1.5em;
+        }
+        .sule_content{
+            font-size: 0.8;
+            color: #999;
         }
         .text-right{
             color: #555;

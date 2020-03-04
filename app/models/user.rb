@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, length:{maximum: 20}, uniqueness: true
-                        
-  has_many :commes
-  has_many :replies
+  validates :fav_team, presence: false
+  has_many :commes, dependent: :destroy
+  has_many :sules
+  has_many :replies, dependent: :destroy
   has_many :browsing_histories
   has_many :comment_histories
   has_many :active_relationships, class_name: "Relationship",

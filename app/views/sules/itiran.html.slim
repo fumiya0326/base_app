@@ -1,10 +1,12 @@
 h2 検索
 =form_tag(sule_itiran_path, :method =>'get')do
     =text_field_tag :search
-    = submit_tag 'Search'
+    = submit_tag 'Search', class:"btn btn-info"
 
 h2　スレッド一覧
 -if @sules.empty?
     |検索結果に一致するスレッドはありません
 -else
-    =render @sules
+    .list-group
+        =render @sules
+        =paginate @sules

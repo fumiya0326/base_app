@@ -1,15 +1,15 @@
 =form_for @newsule, url:sule_create_path_url do|f|
     =f.label :name, "スレッド名"
     br
-    =f.text_field :name
+    =f.text_field :name, class:"form-control"
     br
     =f.label :content, "スレッドの内容"
     br
-    =f.text_area :content
+    =f.text_area :content, class:"form-control"
     br
     =f.label "画像をアップロード"
     br
     =f.file_field :image
     br
     =f.hidden_field :teamatr
-    =f.button 
+    =f.button class:"btn btn-block btn-info"

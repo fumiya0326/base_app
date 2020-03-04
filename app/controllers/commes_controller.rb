@@ -30,14 +30,21 @@ class CommesController < ApplicationController
             history[0].destroy
         end
     end
-    
-    def ikioi_update
-      ikioi=self.commmes.count/(Time.now.to_i-self.created_at.to_i)
-      ikioi.update
+  
+    def destroy
+        @comme=Comme.find_by(id: params[:id])
+        @sule=@comme.sule
+        if  @sule.user==current_user 
+            @comme.destroy
+            redirect_to sule_show_path_url(@sule)
+        else
+            redirect_to root_path
+        end
     end
+  
     
     private
         def comme_params
-            params.require(:comme).permit(:comment,:sule_id, :image)
+            params.require(:comme).permit(:comment,:sule_id, :image, :user_id)
         end
 end

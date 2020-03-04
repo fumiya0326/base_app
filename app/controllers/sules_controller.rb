@@ -7,7 +7,10 @@ class SulesController < ApplicationController
     if user_signed_in?
       @browsing_histories=current_user.browsing_histories.all.order(created_at: "DESC")
       @followings=current_user.feed.page(params[:page]).per(5)
+      @fav_sules=Sule.where(teamatr: current_user.fav_team).order(ikioi: "DESC").limit(8)
     end
+    @chart=Sule.group(:teamatr).count
+    @user=User.all
   end
   
   
@@ -17,7 +20,7 @@ class SulesController < ApplicationController
   end
   
   def itiran
-    @sules=Sule.search(params[:search])
+    @sules=Sule.search(params[:search]).page(params[:page])
   end
 
   
@@ -50,7 +53,7 @@ class SulesController < ApplicationController
   
   def create
     @sule=Sule.new(sule_params)
-    #@sule.ikioi=0
+    @sule.user_id=current_user.id
     if @sule.save
       redirect_to sule_show_path_url(id: @sule.id), notice: '成功しました'
     else
@@ -58,6 +61,7 @@ class SulesController < ApplicationController
     end
   end
   
+
   
 
   

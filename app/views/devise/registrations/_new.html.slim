@@ -31,5 +31,5 @@ div class="modal fade" id="signUpModal" tabinex="-1" role="dialog" aria-labelled
           = f.hidden_field :url, value: request.fullpath 
 
           .actions
-            = f.submit "Sign up"
+            = f.submit "Sign up", class:"btn btn-block btn-info "
         = render "devise/shared/links", class:"btn btn-primary form-control"

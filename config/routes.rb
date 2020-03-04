@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get  'sules/new',           to: 'sules#new'
   get 'sules/search',         to: 'sules#search'
   get   'users/show/:id',     to: 'users#show', as: :users_show_path
-  
+  delete 'sules/show/:id',    to: 'commes#destroy', as: :commes_destroy
+  patch 'users/show/:id',      to: 'users#update', as: :team_update
   
 end

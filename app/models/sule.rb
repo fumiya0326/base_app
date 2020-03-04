@@ -7,10 +7,18 @@ class Sule < ApplicationRecord
     has_many :replies
     has_many :browsing_histories
     mount_uploader :image, ImageUploader
-    
+    validate :image_size
+    belongs_to :user
+
     def self.search(search)
         return Sule.all unless search
         Sule.where(["name LIKE? OR content LIKE?", "%#{search}%", "%#{search}%"])
     end
     
+    private
+    def image_size
+      if image.size > 5.megabytes
+        errors.add(:picture, "5MB以下にしてください")
+      end
+    end 
 end

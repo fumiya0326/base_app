@@ -8,6 +8,8 @@ gem 'mini_magick',             '4.7.0'
 gem 'bootstrap-sass',          '3.3.7'
 gem 'kaminari'
 gem 'coffee-script'
+gem "chartkick"
+gem 'chartable'
 gem 'puma',                    '3.9.1'
 gem 'sass-rails',              '5.0.6'
 gem 'uglifier',                '3.2.0'
@@ -27,7 +29,7 @@ gem 'devise-i18n-views'
 gem 'slim'
 gem 'html2slim'
 gem 'rename'
-gem "rmagick", "~>2.13.2", :require => 'RMagick'
+#gem "rmagick", "~>2.13.4", :require => 'RMagick'
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri

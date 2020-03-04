@@ -3,7 +3,10 @@ nav aria-label="パンくずリスト"
     li class="breadcrumb-item active" aria-current="page"
       |ホーム
 
-
+.jumbotron
+  .container
+    h1 幅一杯にジャンボトロン
+    .lead これは親要素の全ての横方向の空白一杯に広がるように設定変更されたジャンボトロンです。
 
 .row
     -if user_signed_in?
@@ -18,20 +21,35 @@ nav aria-label="パンくずリスト"
       .col-xs-4
         =render 'team'
         
+        h2 お気に入りのチームのスレッド
+        .list-group
+          =render @fav_sules
+        
         h2 フォローしている人のコメント
-        .list-group style="max-width: 300px"
+        .list-group style="max-width: 400px"
           -@followings.each do|f|
             .list-group-item 
+              =link_to "#{f.user.username}", users_show_path_url(f.user)
+              br
               -if f.reply_id.nil?
                 =f.comme.comment
+                .text-right
+                  |スレッド名:
+                  =f.comme.sule.name
               -else
                 =f.reply.reply
-              .text-right
-                  =f.user.username
+                .text-right
+                  |スレッド名:
+                  =f.reply.sule.name
+              
+                 
           = paginate @followings
           
-    
-        
+        |スレッドの内訳
+        =pie_chart @chart ,colors: ["#61c2fa", "#f06969","#7097e6","#e6966c","#92e670","#fe3"]
+   
+        |ファン数の推移
+        =bar_chart @user.group(:fav_team).count
     -else
         .col-xs-6
            

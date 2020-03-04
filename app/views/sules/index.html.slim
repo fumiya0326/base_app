@@ -13,4 +13,8 @@ h1トピック一覧
       =render @sules
       = paginate @sules
   .col-xs-4
-    =render 'newsule'
+    -if signed_in?
+      =render 'newsule'
+    -else
+      button class="btn btn-lg btn-info btn-block" data-toggle="modal" data-target="#signUpModal"
+        |新規登録してスレッドを作成する    
