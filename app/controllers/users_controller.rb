@@ -6,8 +6,8 @@ class UsersController < ApplicationController
         @followings=@user.following.all
         @sules=Sule.where(user_id: @user.id)
         @chart=@user.commes.group("date(created_at)").count
-        @today_comment=@user.commes.where("created_at LIKE?", "%#{Time.zone.today}%").count+ @user.replies.where("created_at LIKE?", "%#{Time.zone.today}%").count
-        @yesterday_comment=@user.commes.where("created_at LIKE?", "%#{Time.zone.yesterday}%").count+ @user.replies.where("created_at LIKE?", "%#{Time.zone.yesterday}%").count
+        #@today_comment=@user.commes.where("created_at LIKE?", "%#{Time.zone.today}%").count+ @user.replies.where("created_at LIKE?", "%#{Time.zone.today}%").count
+        #@yesterday_comment=@user.commes.where("created_at LIKE?", "%#{Time.zone.yesterday}%").count+ @user.replies.where("created_at LIKE?", "%#{Time.zone.yesterday}%").count
     end
     
     def following
