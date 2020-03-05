@@ -16,12 +16,12 @@ nav aria-label="パンくずリスト"
         |総コメント数:  
         =@user.commes.count
         br
-    /    |今日のコメント数:
-        =@today_comment
-     /   br
-        =@yesterday_comment
-    /    ="(前日比#{@today_comment-@yesterday_comment})"
-        br
+        /|今日のコメント数:
+         =@today_comment
+         br
+         =@yesterday_comment
+         ="(前日比#{@today_comment-@yesterday_comment})"
+         br
         =link_to "フォロー数:",  following_user_url(@user), :style=>"color:black"
         =@user.following.count
         br
