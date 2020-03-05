@@ -30,13 +30,13 @@ nav aria-label="パンくずリスト"
         br 
         |お気に入りのチーム
         =@user.fav_team
-        
-        -unless current_user.id==@user.id
-            =render 'follow_form'  
-        -else
-            =form_for @user, url: team_update_url do |f|
-                =f.select :fav_team,[ ["BayStars","BayStars" ],["Carp", "Carp"],["Dragons", "Dragons"],["Giants", "Giants"],["Tigers", "Tigers"],["Swallows","Swallows"]]
-                =f.button "変更", class:"btn btn-info"
+        -if signed_in?
+            -unless current_user.id==@user.id
+                =render 'follow_form'  
+            -else
+                =form_for @user, url: team_update_url do |f|
+                    =f.select :fav_team,[ ["BayStars","BayStars" ],["Carp", "Carp"],["Dragons", "Dragons"],["Giants", "Giants"],["Tigers", "Tigers"],["Swallows","Swallows"]]
+                    =f.button "変更", class:"btn btn-info"
         br 
         
         =line_chart @chart

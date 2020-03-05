@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!, only:[:update]
     def show
         @user=User.find(params[:id])
         @comment_histories=@user.comment_histories.order(created_at: "DESC")
