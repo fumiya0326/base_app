@@ -30,6 +30,7 @@ body{
     padding-top: 6px;
     word-wrap: break-word;
 }
+
 section{
     overflow: auto;
 }
@@ -45,6 +46,12 @@ textarea{
 }
 .jumbotron{
     background-color: #a4ede3;
+}
+.notice{
+    padding-top:20px;
+}
+.alert{
+    padding-top:20px;
 }
 .row{
     

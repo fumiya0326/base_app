@@ -10,7 +10,7 @@ nav aria-label="パンくずリスト"
         -else
             |ユーザーページ
 .row
-    .col-xs-4
+    .col-sm-4
         h1 =@user.username
 
         |総コメント数:  
@@ -28,7 +28,7 @@ nav aria-label="パンくずリスト"
         =link_to "フォロワー数", followers_user_url(@user), :style=>"color:black"
         =@user.followers.count
         br 
-        |asd
+        |お気に入りのチーム
         =@user.fav_team
         
         -unless current_user.id==@user.id
@@ -36,12 +36,12 @@ nav aria-label="パンくずリスト"
         -else
             =form_for @user, url: team_update_url do |f|
                 =f.select :fav_team,[ ["BayStars","BayStars" ],["Carp", "Carp"],["Dragons", "Dragons"],["Giants", "Giants"],["Tigers", "Tigers"],["Swallows","Swallows"]]
-                =f.button
+                =f.button "変更", class:"btn btn-info"
         br 
         
         =line_chart @chart
     
-    .col-xs-6
+    .col-sm-4
         h2 最近したコメント
         .list-group style="max-width:400px"
         -if @comment_histories.any?
@@ -50,14 +50,22 @@ nav aria-label="パンくずリスト"
                 =link_to sule_show_path_url(c.comme.sule), class: "list-group-item"
                     =c.comme.comment
                     br
-                    =c.comme.sule.name
-                    br        
-                    =c.created_at.to_s(:datetime_jp)
-                    br
+                    .text-right
+                        |スレッド名:
+                        =c.comme.sule.name
+                        br        
+                        =c.created_at.to_s(:datetime_jp)
+                        br
             -else
                 =link_to sule_show_path_url(c.reply.comme.sule), class: "list-group-item"
                     =c.reply.reply
                     br
-                    =c.reply.comme.sule.name
-                    br
-                    =c.created_at.to_s(:datetime_jp)
+                    .text-right
+                        |スレッド名: 
+                        =c.reply.comme.sule.name
+                        br
+                        =c.created_at.to_s(:datetime_jp)
+    
+    .col-sm-3
+        h2 作成したスレッド
+        =render @sules

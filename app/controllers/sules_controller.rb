@@ -2,11 +2,11 @@ class SulesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def teamindex
-    @sules=Sule.all.order(ikioi: "DESC").limit(5)
-    @new_sules=Sule.all.order(created_at: "DESC").page(params[:page]).per(5)
+    @sules=Sule.all.order(ikioi: "DESC").limit(8)
+    @new_sules=Sule.all.order(created_at: "DESC").limit(8)
     if user_signed_in?
       @browsing_histories=current_user.browsing_histories.all.order(created_at: "DESC")
-      @followings=current_user.feed.page(params[:page]).per(5)
+      @followings=current_user.feed.page(params[:page]).per(8)
       @fav_sules=Sule.where(teamatr: current_user.fav_team).order(ikioi: "DESC").limit(8)
     end
     @chart=Sule.group(:teamatr).count
@@ -45,7 +45,7 @@ class SulesController < ApplicationController
       end
     end
     
-    @commes=Comme.where(sule_id: params[:id]).page(params[:page]).per(20)
+    @commes=Comme.where(sule_id: params[:id]).page(params[:page]).per(20).limit(1000)
     @newcomme=Comme.new(sule_id: params[:id])
     @newreply=Reply.new(sule_id: params[:id])
   

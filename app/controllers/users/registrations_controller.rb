@@ -28,7 +28,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      redirect_to params[:user][:url], notice: resource.errors.full_messages
+      a=resource.errors.full_messages.to_a
+      redirect_to params[:user][:url], notice: "#{a[0]} #{a[1]} #{a[2]}"
     end
   end
   

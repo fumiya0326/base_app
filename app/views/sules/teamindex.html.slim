@@ -5,26 +5,34 @@ nav aria-label="パンくずリスト"
 
 .jumbotron
   .container
-    h1 幅一杯にジャンボトロン
-    .lead これは親要素の全ての横方向の空白一杯に広がるように設定変更されたジャンボトロンです。
-
-.row
-    -if user_signed_in?
-      .col-xs-6
-        h2 最近見た記事
-        .list-group style="max-width: 400px"
-          =render @browsing_histories
+    h1 セリーグファンの交流掲示板
+    -unless signed_in? 
+      .lead このサイトはNPBのセリーグファンのためのwebアプリケーションです。ログインしなくても閲覧はできますが、新規登録しログインするとスレッドの作成やコメントの投稿ができるようになります。
+    button class="btn btn-lg btn-info btn-block" data-toggle="modal" data-target="#signUpModal"
+      |新規登録してコメントする
+-if user_signed_in?
+  .row
+      .col-sm-5
+        h2 新着記事
+        .list-group style="max-width: 470px"
+          =render @new_sules
+     
         
-        h2 コメントの多い記事
+
+      .col-sm-5
+        h2 勢いが高い記事
         .list-group style="max-width: 400px"
           =render @sules
-      .col-xs-4
+      .col-sm-2
+        h2 チーム一覧
         =render 'team'
+  .row   
+      .col-sm-4
         
         h2 お気に入りのチームのスレッド
         .list-group
           =render @fav_sules
-        
+      .col-sm-4
         h2 フォローしている人のコメント
         .list-group style="max-width: 400px"
           -@followings.each do|f|
@@ -44,25 +52,34 @@ nav aria-label="パンくずリスト"
               
                  
           = paginate @followings
-          
-        |スレッドの内訳
-        =pie_chart @chart ,colors: ["#61c2fa", "#f06969","#7097e6","#e6966c","#92e670","#fe3"]
-   
-        |ファン数の推移
-        =bar_chart @user.group(:fav_team).count
-    -else
-        .col-xs-6
-           
-  
-          h2 コメントの多い記事
+      .col-sm-4
+        h2 最近見た記事
+        .list-group style="max-width: 400px"
+            =render @browsing_histories        
+      
+
+-else
+  .row
+      .col-sm-5
+          h2 勢いの高いスレッド
           .list-group style="max-width: 470px"
             =render @sules
-        .col-xs-6
-          =render 'team'  
-          h2 新着記事
+      .col-sm-5
+          h2 新着
           .list-group style="max-width: 470px"
             =render @new_sules
-            =paginate @new_sules
+            
+      .col-sm-2 
+        h2 チーム一覧
+        =render 'team' 
+.row
+  .col-sm-6
+    h4 スレッドの内訳
+    =pie_chart @chart ,colors: ["#61c2fa", "#f06969","#7097e6","#e6966c","#92e670","#fe3"]
+  .col-sm-6
+    h4 ファン数
+    =bar_chart @user.group(:fav_team).count, colors:["#4eccbb"]        
+        
         
     
       

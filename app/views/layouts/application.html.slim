@@ -30,11 +30,11 @@ html
                   |ログイン
             li =link_to "戻る", :back
     
-          
-    p.notice
-      = notice
-    p.alert
-      = alert
+    .container      
+      p.notice
+        = notice
+      p.alert
+        = alert
     .container
       = yield
     -unless user_signed_in?

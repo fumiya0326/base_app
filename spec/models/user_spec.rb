@@ -29,12 +29,12 @@ RSpec.describe User, type: :model do
       end
       
       it "is valid without teamatr"do 
-        @user.teamatr=""
+        @user.fav_team=""
         expect(@user).to be_valid
       end
       
       it "is invalid with false teamatr"do 
-        @user.teamatr="abeshinnosuke"
+        @user.fav_team="abeshinnosuke"
         expect(@user).to be_valid
       end
       

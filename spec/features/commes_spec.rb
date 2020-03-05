@@ -39,7 +39,7 @@ RSpec.feature "Commes", type: :feature do
     scenario "guest does not create new comment"do
         sule=create(:sule)
         visit sules_show_path(id: sule.id)
-        expect(page).to have_content"新規登録してコメントする"
+        expect(page).to_not have_content"コメントする"
         expect(page).not_to have_content"ログアウト"
 
     end

@@ -6,6 +6,8 @@ RSpec.describe BrowsingHistory, type: :model do
   end
   
   it "is valid browsing history with user and thread"do 
+    @browsing_history.user_id=1
+    @browsing_history.sule_id=1
     expect(@browsing_history).to be_valid
   end
   
