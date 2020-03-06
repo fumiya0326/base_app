@@ -12,14 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20200304164728) do
 
-  create_table "browsing_histories", force: :cascade do |t|
+  create_table "browsing_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "sule_id"
   end
 
-  create_table "comment_histories", force: :cascade do |t|
+  create_table "comment_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id"
     t.integer "comme_id"
     t.datetime "created_at", null: false
@@ -27,17 +27,17 @@ ActiveRecord::Schema.define(version: 20200304164728) do
     t.integer "reply_id"
   end
 
-  create_table "commes", force: :cascade do |t|
+  create_table "commes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sule_id"
+    t.bigint "sule_id"
     t.integer "user_id"
     t.string "image"
     t.index ["sule_id"], name: "index_commes_on_sule_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "follower_id"
     t.integer "follow_id"
     t.datetime "created_at", null: false
@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 20200304164728) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "replies", force: :cascade do |t|
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "reply"
-    t.integer "user_id"
-    t.integer "comme_id"
-    t.integer "sule_id"
+    t.bigint "user_id"
+    t.bigint "comme_id"
+    t.bigint "sule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
@@ -60,18 +60,18 @@ ActiveRecord::Schema.define(version: 20200304164728) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
-  create_table "sules", force: :cascade do |t|
+  create_table "sules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "teamatr"
     t.text "content"
     t.string "image"
-    t.float "ikioi"
+    t.float "ikioi", limit: 24
     t.integer "user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -89,4 +89,8 @@ ActiveRecord::Schema.define(version: 20200304164728) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "commes", "sules"
+  add_foreign_key "replies", "commes"
+  add_foreign_key "replies", "sules"
+  add_foreign_key "replies", "users"
 end

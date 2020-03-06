@@ -29,9 +29,12 @@ gem 'devise-i18n-views'
 gem 'slim'
 gem 'html2slim'
 gem 'rename'
+gem 'mysql2'
+gem 'dotenv-rails'
+
 #gem "rmagick", "~>2.13.4", :require => 'RMagick'
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
+ # gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails'
   gem 'factory_bot_rails'
@@ -54,7 +57,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg',   '0.20.0'
+  #gem 'pg',   '0.20.0'
   gem 'fog',  '1.42'
 end
 

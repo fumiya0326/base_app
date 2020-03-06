@@ -12,7 +12,7 @@ h1トピック一覧
     ul class="list-group" style="max-width: 700px;"
       =render @sules
       = paginate @sules
-  .col-xs-4
+  .col-sm-4
     -if signed_in?
       =render 'newsule'
     -else
