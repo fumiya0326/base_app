@@ -10,25 +10,25 @@ nav aria-label="パンくずリスト"
         -else
             |ユーザーページ
 .row
-    .col-sm-4
+    .col-sm-5
         h1 =@user.username
 
         |総コメント数:  
         =@user.commes.count
         br
-        /|今日のコメント数:
-         =@today_comment
-         br
-         =@yesterday_comment
-         ="(前日比#{@today_comment-@yesterday_comment})"
-         br
+        |今日のコメント数:
+        =@today_comment
+        br
+        =@yesterday_comment
+        ="(前日比#{@today_comment-@yesterday_comment})"
+        br
         =link_to "フォロー数:",  following_user_url(@user), :style=>"color:black"
         =@user.following.count
         br
         =link_to "フォロワー数", followers_user_url(@user), :style=>"color:black"
         =@user.followers.count
         br 
-        |お気に入りのチーム
+        |お気に入りのチーム:
         =@user.fav_team
         -if signed_in?
             -unless current_user.id==@user.id
@@ -39,33 +39,47 @@ nav aria-label="パンくずリスト"
                     =f.button "変更", class:"btn btn-info"
         br 
         
-        /=line_chart @chart
+        =line_chart @chart
     
-    .col-sm-4
-        h2 最近したコメント
-        .list-group style="max-width:400px"
-        -if @comment_histories.any?
-         -@comment_histories.each do|c|
-            -if c.reply_id.nil?
-                =link_to sule_show_path_url(c.comme.sule), class: "list-group-item"
-                    =c.comme.comment
-                    br
-                    .text-right
-                        |スレッド名:
-                        =c.comme.sule.name
-                        br        
-                        =c.created_at.to_s(:datetime_jp)
-                        br
-            -else
-                =link_to sule_show_path_url(c.reply.comme.sule), class: "list-group-item"
-                    =c.reply.reply
-                    br
-                    .text-right
-                        |スレッド名: 
-                        =c.reply.comme.sule.name
-                        br
-                        =c.created_at.to_s(:datetime_jp)
-    
-    .col-sm-3
+    .col-sm-7
         h2 作成したスレッド
-        =render @sules
+        -if @sules.any?
+            =render @sules
+        -else
+            br
+            h4 作成したスレッドはありません
+            br
+    
+        h2 最近したコメント
+        -if @comment_histories.any?
+            .list-group style="max-width:400px"
+            -if @comment_histories.any?
+             -@comment_histories.each do|c|
+                -if c.reply_id.nil?
+                    =link_to sule_show_path_url(c.comme.sule), class: "list-group-item"
+                        =c.comme.comment
+                        br
+                        .text-right
+                            |スレッド名:
+                            =c.comme.sule.name
+                            br        
+                            =c.created_at.to_s(:datetime_jp)
+                            br
+                -else
+                    =link_to sule_show_path_url(c.reply.comme.sule), class: "list-group-item"
+                        =c.reply.reply
+                        br
+                        .text-right
+                            |スレッド名: 
+                            =c.reply.comme.sule.name
+                            br
+             
+                            =c.created_at.to_s(:datetime_jp)
+                 
+        -else
+            br
+            h4 コメントはありません
+            br
+    
+  
+ 

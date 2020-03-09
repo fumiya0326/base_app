@@ -5,11 +5,12 @@ nav aria-label="パンくずリスト"
 
 .jumbotron
   .container
-    h1 セリーグファンの交流掲示板
+    h1 セリーグファンの交流掲示板です。
     -unless signed_in? 
       .lead このサイトはNPBのセリーグファンのためのwebアプリケーションです。ログインしなくても閲覧はできますが、新規登録しログインするとスレッドの作成やコメントの投稿ができるようになります。
-    button class="btn btn-lg btn-info btn-block" data-toggle="modal" data-target="#signUpModal"
-      |新規登録してコメントする
+    -unless signed_in?
+      button class="btn btn-lg btn-info btn-block" data-toggle="modal" data-target="#signUpModal"
+          |新規登録してコメントする
 -if user_signed_in?
   .row
       .col-sm-5
@@ -21,7 +22,7 @@ nav aria-label="パンくずリスト"
 
       .col-sm-5
         h2 勢いが高い記事
-        .list-group style="max-width: 400px"
+        .list-group style="max-width: 470px"
           =render @sules
       .col-sm-2
         h2 チーム一覧
@@ -29,12 +30,17 @@ nav aria-label="パンくずリスト"
   .row   
       .col-sm-4
         
-        h2 お気に入りのチームのスレッド
-        .list-group
+        h2 お気に入りのチームの記事
+        -if current_user.fav_team==nil?
+          br
+          br
+          =link_to "お気に入りのチームを登録する", users_show_path_url(current_user), class: "btn btn-info"
+        .list-group style="max-width: 470px"
           =render @fav_sules
       .col-sm-4
-        h2 フォローしている人のコメント
-        .list-group style="max-width: 400px"
+        h2 フォロー中の人のコメント
+        .list-group style="max-width: 470px"
+         -if @followings.any?
           -@followings.each do|f|
             .list-group-item 
               =link_to "#{f.user.username}", users_show_path_url(f.user)
@@ -49,14 +55,21 @@ nav aria-label="パンくずリスト"
                 .text-right
                   |スレッド名:
                   =f.reply.sule.name
-              
-                 
-          = paginate @followings
+          =paginate @followings
+         -else 
+            br
+            h4 フォローしている人のコメントはありません
+            br
+            
       .col-sm-4
         h2 最近見た記事
-        .list-group style="max-width: 400px"
-            =render @browsing_histories        
-      
+        .list-group style="max-width: 470px"
+          -if @browsing_histories.any?
+            =render @browsing_histories
+          -else
+            br
+            h4 最近見た記事はありません
+            br
 
 -else
   .row
@@ -75,7 +88,7 @@ nav aria-label="パンくずリスト"
 .row
   .col-sm-6
     h4 スレッドの内訳
-    =pie_chart @chart ,colors: ["#61c2fa", "#f06969","#7097e6","#e6966c","#92e670","#fe3"]
+    =pie_chart @chart.sort ,colors: ["#61c2fa", "#f06969","#7097e6","#e6966c","#92e670","#fe3"]
   .col-sm-6
     h4 ファン数
     =bar_chart @user.group(:fav_team).count, colors:["#4eccbb"]        

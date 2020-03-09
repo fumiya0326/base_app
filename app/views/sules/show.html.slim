@@ -10,7 +10,7 @@
       |データ
 h1 =@sule.name
 div class="row"
-  div class="col-xs-8"
+  div class="col-sm-8"
     ul class="list-group" style="max-width: 800px"
       li class="list-group-item"
         .commename
@@ -65,6 +65,7 @@ div class="row"
                         br
                         =f.file_field :image
                     .modal-fotter
+                      .text-right
                         button type="button" class="btn btn-defauld" data-dismiss="modal" キャンセル
                         =f.button '送信', class: "btn btn-primary"
                         =f.hidden_field :user_id
@@ -75,6 +76,7 @@ div class="row"
             -comme.replies.each do|reply|
               .reply
                 li class="list-group-item list-group-item-primary"
+                  |➥
                   =link_to users_show_path_url(reply.user)
                     =reply.user.username
                   p
@@ -97,12 +99,12 @@ div class="row"
                 
                 
             
-  div class="col-xs-4"
+  div class="col-sm-4"
 
    
     .modal fade #sule-modal tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"
     -if user_signed_in?  
-      button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#createComme" コメントする
+      button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#createComme" コメントする
    
       div class="modal fade" id="createComme" tabinex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"
         div class="modal-dialog"

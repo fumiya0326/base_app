@@ -7,7 +7,10 @@
     =sule.content
   br
   .text-right
-    
+    -if Time.now.to_i-sule.created_at.to_i<86400
+      span class="badge badge-info"
+        |new
+    br
     |勢い：
     =sule.ikioi
     br
