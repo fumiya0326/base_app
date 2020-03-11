@@ -1,24 +1,19 @@
 # README
+https://baseball-ce.net
+これはプロ野球セリーグファンのコミュニケーションアプリです。Twitterより不特定多数に、匿名掲示板よりもモラルのある交流を目指して作りました。
+ユーザー登録機能、記事投稿機能、コメントリプライ投稿機能、画像投稿機能、フォロー機能、検索機能等の基本的な機能を有しています。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+使用技術
+言語 Ruby,html,css
+フレームワーク　Ruby on Rails
+データベース　sqlite(開発環境),mysql(本番環境)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+deviseによる認証
+deviseによる認証機能
+carriewaveによる画像投稿機能
+minimagickによる画像編集
+rspecを使用したテスト
+chartkickを使用したグラフ描画
+bootstrapによるレイアウト
+githubを使用したバージョン管理
+本番環境にはawsのクラウドサービスを使用(ec2, RDS)
