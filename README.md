@@ -1,6 +1,6 @@
 # README
 
-http://baseball-ce.net/
+http://www.baseball-ce.net/
 
 これはプロ野球セリーグファンのコミュニケーションアプリです。Twitterより不特定多数に、匿名掲示板よりもモラルのある交流を目指して作りました。
 
